@@ -43,70 +43,75 @@ main:
 		ori $a0 $v1 0x0 #select mem with name
 		addi $v0, $0, 4 #load command register with print system command
 		syscall #execute command to print promt
-		#b. The value in val1
-		lui $v1 0x1001
-		ori $a0 $v1 0x1e
-		addi $v0 $0 4
-		syscall 
 		
-		lui $v1 0x1001
-		lw $a0 0x20($v1)
-		addi $v0 $0 1
-		syscall 
+		#b. The value in val1
+		lui $v1 0x1001 #init base register
+		ori $a0 $v1 0x1e # insert mem addr of \n to $a0
+		addi $v0 $0 4 #print string command in $v0	
+		syscall  #exec command in $v0
+		
+		lui $v1 0x1001 #init base reg for mem
+		lw $a0 0x20($v1) #load addr into reg $a0
+		addi $v0 $0 1 #print command 
+		syscall #exec print command
 		
 		#c. The value in val2
-		lui $v1 0x1001
-		ori $a0 $v1 0x1e
-		addi $v0 $0 4
-		syscall 
+		lui $v1 0x1001 #init base register
+		ori $a0 $v1 0x1e # insert mem addr of \n to $a0
+		addi $v0 $0 4 #print string command in $v0	
+		syscall  #exec command in $v0
 		
-		lui $v1 0x1001
-		lw $a0 0x24($v1)
-		addi $v0 $0 1
-		syscall
+		lui $v1 0x1001 #init base reg for mem
+		lw $a0 0x24($v1) #read val2 into $a0
+		addi $v0 $0 1 #print int command
+		syscall #exec print command
+		
 		#d. The value in val3
-		lui $v1 0x1001
-		ori $a0 $v1 0x1e
-		addi $v0 $0 4
-		syscall 
+		lui $v1 0x1001 #init base register
+		ori $a0 $v1 0x1e # insert mem addr of \n to $a0
+		addi $v0 $0 4 #print string command in $v0	
+		syscall  #exec command in $v0
 		
-		lui $v1 0x1001
-		lw $a0 0x28($v1)
-		addi $v0 $0 1
-		syscall
+		lui $v1 0x1001 #init base reg
+		lw $a0 0x28($v1) #read  val3 into $a0
+		addi $v0 $0 1 # print int command
+		syscall #exec command
 	#TASK 8
-		add $s5 $0 $s1
-		add $s1 $0 $s2
-		add $s2 $0 $s5
-#9. Set the value in $s0 to –$s0
-		sub $s0 $0 $s0
-#10. Print the values finally in $s0, $s1 and $2
-		lui $v1 0x1001
-		ori $a0 $v1 0x1e
-		addi $v0 $0 4
-		syscall 
+		add $s5 $0 $s1 #move s1 to temp reg $s5
+		add $s1 $0 $s2 #move s2 to s1
+		add $s2 $0 $s5 #use temp to move s1 to s2
+		add $s5 $0 $0 #clean up s5
+	
+	#TASK 9. 
+		sub $s0 $0 $s0 # -n = 0 - n
+
+	#TASK 10.
+		lui $v1 0x1001 #init base register
+		ori $a0 $v1 0x1e # insert mem addr of \n to $a0
+		addi $v0 $0 4 #print string command in $v0	
+		syscall  #exec command in $v0
 		
-		add $a0 $0 $s0
-		addi $v0 $0 1
-		syscall
+		add $a0 $0 $s0 #move to reg to print
+		addi $v0 $0 1 #command 1 to print
+		syscall #exec print command
 		
-		lui $v1 0x1001
-		ori $a0 $v1 0x1e
-		addi $v0 $0 4
-		syscall
+		lui $v1 0x1001 #init base register
+		ori $a0 $v1 0x1e # insert mem addr of \n to $a0
+		addi $v0 $0 4 #print string command in $v0	
+		syscall  #exec command in $v0
 		
-		add $a0 $0 $s1
-		addi $v0 $0 1
-		syscall
+		add $a0 $0 $s1 #move to reg to print
+		addi $v0 $0 1 #command 1 to print
+		syscall #exec print command
 		
-		lui $v1 0x1001
-		ori $a0 $v1 0x1e
-		addi $v0 $0 4
-		syscall
+		lui $v1 0x1001 #init base register
+		ori $a0 $v1 0x1e # insert mem addr of \n to $a0
+		addi $v0 $0 4 #print string command in $v0	
+		syscall  #exec command in $v0
 		
-		add $a0 $0 $s2
-		addi $v0 $0 1
-		syscall
+		add $a0 $0 $s2  #move to reg to print
+		addi $v0 $0 1 #command 1 to print
+		syscall #exec print command
 		
 		
 		
