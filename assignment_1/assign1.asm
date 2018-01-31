@@ -79,4 +79,34 @@ main:
 		add $s1 $0 $s2
 		add $s2 $0 $s5
 #9. Set the value in $s0 to –$s0
+		sub $s0 $0 $s0
 #10. Print the values finally in $s0, $s1 and $2
+		lui $v1 0x1001
+		ori $a0 $v1 0x1e
+		addi $v0 $0 4
+		syscall 
+		
+		add $a0 $0 $s0
+		addi $v0 $0 1
+		syscall
+		
+		lui $v1 0x1001
+		ori $a0 $v1 0x1e
+		addi $v0 $0 4
+		syscall
+		
+		add $a0 $0 $s1
+		addi $v0 $0 1
+		syscall
+		
+		lui $v1 0x1001
+		ori $a0 $v1 0x1e
+		addi $v0 $0 4
+		syscall
+		
+		add $a0 $0 $s2
+		addi $v0 $0 1
+		syscall
+		
+		
+		
