@@ -112,6 +112,10 @@ main:
 		add $a0 $0 $s2  #move to reg to print
 		addi $v0 $0 1 #command 1 to print
 		syscall #exec print command
+	
+	#STOP PROG
+		addi $v0 $0 10
+		syscall
 		
 		
 		
